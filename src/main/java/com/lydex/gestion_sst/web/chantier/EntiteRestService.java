@@ -18,5 +18,5 @@ public class EntiteRestService {
     public List<Entite> getEntites(){return entiteRepository.findAll(); }
 
     @RequestMapping(value = "/entite/{id}",method = RequestMethod.GET)
-    public Optional<Entite> getVisiteHs(@PathVariable Long id){return entiteRepository.findById(id);}
+    public Optional<Entite> getEntite(@PathVariable Long id){return entiteRepository.findById(id);}
 }

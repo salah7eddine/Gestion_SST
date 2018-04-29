@@ -14,7 +14,7 @@ public class Type_chantier implements Serializable {
     private Long id_type;
     private String libelle_type;
 
-    @OneToMany(mappedBy = "typeChantier",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "typeChantier",fetch = FetchType.EAGER)
     private List<Chantier> chantiers;
 
     public Type_chantier() {

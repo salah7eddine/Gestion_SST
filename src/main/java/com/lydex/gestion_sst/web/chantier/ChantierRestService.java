@@ -8,25 +8,23 @@ import com.lydex.gestion_sst.entities.chantier.Visite_hs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 @RestController
 @CrossOrigin("*")
+
 public class ChantierRestService {
     @Autowired
     private ChantierRepository chantierRepository;
-    @Autowired
-    private TypeChantierRepository typeChantierRepository;
+
 
     @RequestMapping(value = "/chantiers",method = RequestMethod.GET)
     public List<Chantier> getChantier(){
         return chantierRepository.findAll();
     }
-
-    @RequestMapping(value = "/typeChantier",method = RequestMethod.GET)
-    public List<Type_chantier> getTypeChantiers(){return  typeChantierRepository.findAll();}
 
     @RequestMapping(value = "/chantier/{id}",method = RequestMethod.GET)
     public Optional<Chantier> getVisiteHs(@PathVariable Long id){return chantierRepository.findById(id);}

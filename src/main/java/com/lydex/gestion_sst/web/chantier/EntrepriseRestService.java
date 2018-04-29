@@ -18,5 +18,5 @@ public class EntrepriseRestService {
     public List<Entreprise_st> getEntreprise(){return entrepriseStRepository.findAll();}
 
     @RequestMapping(value = "/entrepriseSst/{id}",method = RequestMethod.GET)
-    public Optional<Entreprise_st> getVisiteHs(@PathVariable Long id){return entrepriseStRepository.findById(id);}
+    public Optional<Entreprise_st> getEntreprises(@PathVariable Long id){return entrepriseStRepository.findById(id);}
 }

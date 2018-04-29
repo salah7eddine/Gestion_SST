@@ -1,22 +1,27 @@
 package com.lydex.gestion_sst.web.doc;
 
-import com.lydex.gestion_sst.dao.doc.EtatCpRenduRepository;
-import com.lydex.gestion_sst.entities.doc.Etat_compte_rendu;
+
+
+import com.lydex.gestion_sst.dao.doc.CompteRenduRepository;
+import com.lydex.gestion_sst.entities.doc.Compte_rendu;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
+
 
 @RestController
 @CrossOrigin("*")
 public class CpRenduRestService {
     @Autowired
-    private EtatCpRenduRepository etatCpRenduRepository;
+    private CompteRenduRepository compteRenduRepository;
 
-    @RequestMapping(value = "/etatCompteRendus",method = RequestMethod.GET)
-    public List<Etat_compte_rendu> etatCompteRendus(){return etatCpRenduRepository.findAll();}
+
+    @RequestMapping(value = "/compteRendus",method = RequestMethod.GET)
+    public List<Compte_rendu> getCompteRendus(){return compteRenduRepository.findAll();}
+
+    @RequestMapping(value = "/compteRendu/{id}",method = RequestMethod.GET)
+    public Optional<Compte_rendu> getCompteRendu(@PathVariable Long id){return compteRenduRepository.findById(id);}
 
 }
