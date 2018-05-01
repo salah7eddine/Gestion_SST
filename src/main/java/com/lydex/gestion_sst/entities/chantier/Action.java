@@ -3,6 +3,7 @@ package com.lydex.gestion_sst.entities.chantier;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+
 @Entity
 public class Action implements Serializable {
     @Id @GeneratedValue
