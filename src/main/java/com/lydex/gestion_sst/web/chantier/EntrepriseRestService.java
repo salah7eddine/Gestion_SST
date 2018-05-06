@@ -19,4 +19,14 @@ public class EntrepriseRestService {
 
     @RequestMapping(value = "/entrepriseSst/{id}",method = RequestMethod.GET)
     public Optional<Entreprise_st> getEntreprises(@PathVariable Long id){return entrepriseStRepository.findById(id);}
+
+    @RequestMapping(value = "/entrepriseSst",method = RequestMethod.POST)
+    public Entreprise_st SaveEntrepriseSst(@RequestBody Entreprise_st entrepriseSt){return entrepriseStRepository.save(entrepriseSt);}
+
+    @RequestMapping(value="/entrepriseSst/{id}",method = RequestMethod.DELETE)
+    private boolean supprimer(@PathVariable Long id){ entrepriseStRepository.deleteById(id); return true;}
+
+    @RequestMapping(value="/entrepriseSst/{id}",method = RequestMethod.PUT)
+    private Entreprise_st update(@PathVariable Long id,@RequestBody Entreprise_st entrepriseSt){ entrepriseSt.setId_entrep(id); return entrepriseStRepository.save(entrepriseSt);}
+
 }

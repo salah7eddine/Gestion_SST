@@ -20,4 +20,13 @@ public class TypeChantierRestService {
     @RequestMapping(value = "/typeChantier/{id}",method = RequestMethod.GET)
     public Optional<Type_chantier> getTypeChantier(@PathVariable Long id){return typeChantierRepository.findById(id);}
 
+    @RequestMapping(value = "/typeChantier",method = RequestMethod.POST)
+    public Type_chantier SaveTypeChantier(@RequestBody Type_chantier typeChantier){return typeChantierRepository.save(typeChantier);}
+
+    @RequestMapping(value="/typeChantier/{id}",method = RequestMethod.DELETE)
+    private boolean supprimer(@PathVariable Long id){ typeChantierRepository.deleteById(id); return true;}
+
+    @RequestMapping(value="/typeChantier/{id}",method = RequestMethod.PUT)
+    private Type_chantier update(@PathVariable Long id,@RequestBody Type_chantier typeChantier){ typeChantier.setId_type(id); return typeChantierRepository.save(typeChantier);}
+
 }

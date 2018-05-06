@@ -20,4 +20,14 @@ public class ServicesRestService {
 
     @RequestMapping(value = "/service/{id}",method = RequestMethod.GET)
     public Optional<Service> getVisiteHs(@PathVariable Long id){return serviceRepository.findById(id);}
+
+    @RequestMapping(value = "/service",method = RequestMethod.POST)
+    public Service SaveService(@RequestBody Service service){return serviceRepository.save(service);}
+
+    @RequestMapping(value="/service/{id}",method = RequestMethod.DELETE)
+    private boolean supprimer(@PathVariable Long id){ serviceRepository.deleteById(id); return true;}
+
+    @RequestMapping(value="/service/{id}",method = RequestMethod.PUT)
+    private Service update(@PathVariable Long id,@RequestBody Service service){ service.setId_service(id); return serviceRepository.save(service);}
+
 }

@@ -19,4 +19,14 @@ public class ObservationRestService {
 
     @RequestMapping(value = "/observation/{id}",method = RequestMethod.GET)
     public Optional<Observation> getObservation(@PathVariable Long id){return observationRepository.findById(id);}
+
+    @RequestMapping(value = "/observation",method = RequestMethod.POST)
+    public Observation SaveObservation(@RequestBody Observation observation){return observationRepository.save(observation);}
+
+    @RequestMapping(value="/observation/{id}",method = RequestMethod.DELETE)
+    private boolean supprimer(@PathVariable Long id){ observationRepository.deleteById(id); return true;}
+
+    @RequestMapping(value="/observation/{id}",method = RequestMethod.PUT)
+    private Observation update(@PathVariable Long id,@RequestBody Observation observation){ observation.setId_observation(id); return observationRepository.save(observation);}
+
 }

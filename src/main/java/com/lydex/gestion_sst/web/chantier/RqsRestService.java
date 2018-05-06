@@ -18,5 +18,17 @@ public class RqsRestService {
     public List<Rqs> getrsqs(){return rqsRepository.findAll(); }
 
     @RequestMapping(value = "/rqs/{id}",method = RequestMethod.GET)
-    public Optional<Rqs> getrsq(@PathVariable Long id){return rqsRepository.findById(id);}
+    public Optional<Rqs> getRsq(@PathVariable Long id){return rqsRepository.findById(id);}
+
+    @RequestMapping(value = "/rqs",method = RequestMethod.POST)
+    public Rqs SaveRqs(@RequestBody Rqs rqs){return rqsRepository.save(rqs);}
+
+
+    @RequestMapping(value="/rqs/{id}",method = RequestMethod.DELETE)
+    private boolean supprimer(@PathVariable Long id){ rqsRepository.deleteById(id); return true;}
+
+    @RequestMapping(value="/rqs/{id}",method = RequestMethod.PUT)
+    private Rqs update(@PathVariable Long id,@RequestBody Rqs rqs){ rqs.setId_rqs(id); return rqsRepository.save(rqs);}
+
+
 }

@@ -19,4 +19,14 @@ public class BalisageSignalisationRestService {
 
     @RequestMapping(value = "/balisageSignalisation/{id}",method = RequestMethod.GET)
     public Optional<Balisage_signalisation> getbalisageSignalisation(@PathVariable Long id){return balisageSignalisationRepository.findById(id);}
+
+    @RequestMapping(value = "/balisageSignalisation",method = RequestMethod.POST)
+    public Balisage_signalisation SaveBalisageSignalisation(@RequestBody  Balisage_signalisation balisageSignalisation){return balisageSignalisationRepository.save(balisageSignalisation);}
+
+    @RequestMapping(value="/balisageSignalisation/{id}",method = RequestMethod.DELETE)
+    private boolean supprimer(@PathVariable Long id){ balisageSignalisationRepository.deleteById(id); return true;}
+
+    @RequestMapping(value="/balisageSignalisation/{id}",method = RequestMethod.PUT)
+    private Balisage_signalisation update(@PathVariable Long id,@RequestBody Balisage_signalisation balisageSignalisation){ balisageSignalisation.setId_bal_sign(id); return balisageSignalisationRepository.save(balisageSignalisation);}
+
 }

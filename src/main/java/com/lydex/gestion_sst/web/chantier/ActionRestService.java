@@ -19,4 +19,14 @@ public class ActionRestService {
 
     @RequestMapping(value = "/action/{id}",method = RequestMethod.GET)
     public Optional<Action> getAction(@PathVariable Long id){return actionRepository.findById(id);}
+
+    @RequestMapping(value = "/action",method = RequestMethod.POST)
+    public Action SaveAction(@RequestBody  Action action){return actionRepository.save(action);}
+
+    @RequestMapping(value="/action/{id}",method = RequestMethod.DELETE)
+    private boolean supprimer(@PathVariable Long id){ actionRepository.deleteById(id); return true;}
+
+    @RequestMapping(value="/action/{id}",method = RequestMethod.PUT)
+    private Action update(@PathVariable Long id,@RequestBody Action action){ action.setId_action(id); return actionRepository.save(action);}
+
 }

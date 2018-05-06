@@ -38,4 +38,6 @@ public class VisiteHsRestService {
     @RequestMapping(value="/visiteHs/{id}",method = RequestMethod.PUT)
     private Visite_hs update(@PathVariable Long id,@RequestBody Visite_hs visiteHs){ visiteHs.setId_viste(id); return visiteHsRepository.save(visiteHs);}
 
+
+
 }

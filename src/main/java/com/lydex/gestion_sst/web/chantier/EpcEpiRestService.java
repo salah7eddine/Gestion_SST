@@ -20,4 +20,14 @@ public class EpcEpiRestService {
     @RequestMapping(value = "/epcEpi/{id}",method = RequestMethod.GET)
     public Optional<Epc_epi> getEpcEpi(@PathVariable Long id){return epcEpiRepository.findById(id);}
 
+    @RequestMapping(value = "/epcEpi",method = RequestMethod.POST)
+    public Epc_epi SaveEpcEpi(@RequestBody Epc_epi epcEpi){return epcEpiRepository.save(epcEpi);}
+
+    @RequestMapping(value="/epcEpi/{id}",method = RequestMethod.DELETE)
+    private boolean supprimer(@PathVariable Long id){ epcEpiRepository.deleteById(id); return true;}
+
+    @RequestMapping(value="/epcEpi/{id}",method = RequestMethod.PUT)
+    private Epc_epi update(@PathVariable Long id,@RequestBody Epc_epi epcEpi){ epcEpi.setId_epc_epi(id); return epcEpiRepository.save(epcEpi);}
+
+
 }

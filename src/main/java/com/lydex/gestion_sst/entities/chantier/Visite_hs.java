@@ -3,13 +3,11 @@ package com.lydex.gestion_sst.entities.chantier;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.lydex.gestion_sst.entities.doc.Compte_rendu;
 import com.lydex.gestion_sst.entities.doc.Document_chantier;
-import com.lydex.gestion_sst.entities.doc.Etat_compte_rendu;
 import com.lydex.gestion_sst.entities.user.User;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -22,6 +20,9 @@ public class Visite_hs implements Serializable{
     private Date date_visite;
     @Temporal(TemporalType.DATE)
     private Date ordre_viste;
+    //private Collection<String> visiteurs;
+    //private Collection<String> Agents_Visités;
+
 
     @ManyToOne
     @JoinColumn(name = "Code_user")
@@ -69,14 +70,15 @@ public class Visite_hs implements Serializable{
     @JoinColumn(name = "Code_hyg_prp",referencedColumnName = "id_hyg_prp")
     private Hygiene_proprete hygieneProprete;
 
+
     public Visite_hs() {
     }
 
     public Visite_hs(String description, Date date_visite, Date ordre_viste) {
-
         this.description = description;
         this.date_visite = date_visite;
         this.ordre_viste = ordre_viste;
+
     }
 
     public String getDescription() {
@@ -209,4 +211,7 @@ public class Visite_hs implements Serializable{
     public void setHygieneProprete(Hygiene_proprete hygieneProprete) {
         this.hygieneProprete = hygieneProprete;
     }
+
+
+
 }

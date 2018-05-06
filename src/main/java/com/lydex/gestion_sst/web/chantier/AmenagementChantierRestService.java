@@ -19,4 +19,14 @@ public class AmenagementChantierRestService {
 
     @RequestMapping(value = "/amenagementChantier/{id}",method = RequestMethod.GET)
     public Optional<Amenagenment_chantier> getAmenagementChantier(@PathVariable Long id){return amenagementChantierRepository.findById(id);}
+
+    @RequestMapping(value = "/amenagementChantier",method = RequestMethod.POST)
+    public Amenagenment_chantier SaveAmenagementChantier(@RequestBody  Amenagenment_chantier amenagenmentChantier){return amenagementChantierRepository.save(amenagenmentChantier);}
+
+    @RequestMapping(value="/amenagementChantier/{id}",method = RequestMethod.DELETE)
+    private boolean supprimer(@PathVariable Long id){ amenagementChantierRepository.deleteById(id); return true;}
+
+    @RequestMapping(value="/amenagementChantier/{id}",method = RequestMethod.PUT)
+    private Amenagenment_chantier update(@PathVariable Long id,@RequestBody Amenagenment_chantier amenagenmentChantier){ amenagenmentChantier.setId_amenag_chantier(id); return amenagementChantierRepository.save(amenagenmentChantier);}
+
 }

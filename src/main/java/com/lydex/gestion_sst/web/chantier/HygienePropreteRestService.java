@@ -19,4 +19,14 @@ public class HygienePropreteRestService {
 
     @RequestMapping(value = "/hygieneProprete/{id}",method = RequestMethod.GET)
     public Optional<Hygiene_proprete> getHygieneProprete(@PathVariable Long id){return hygienePropreteRepository.findById(id);}
+
+    @RequestMapping(value = "/hygieneProprete",method = RequestMethod.POST)
+    public Hygiene_proprete SaveHygieneProprete(@RequestBody Hygiene_proprete hygieneProprete){return hygienePropreteRepository.save(hygieneProprete);}
+
+    @RequestMapping(value="/hygieneProprete/{id}",method = RequestMethod.DELETE)
+    private boolean supprimer(@PathVariable Long id){ hygienePropreteRepository.deleteById(id); return true;}
+
+    @RequestMapping(value="/hygieneProprete/{id}",method = RequestMethod.PUT)
+    private Hygiene_proprete update(@PathVariable Long id,@RequestBody Hygiene_proprete hygieneProprete){ hygieneProprete.setId_hyg_prp(id); return hygienePropreteRepository.save(hygieneProprete);}
+
 }
