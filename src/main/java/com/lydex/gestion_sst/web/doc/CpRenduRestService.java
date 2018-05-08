@@ -24,4 +24,8 @@ public class CpRenduRestService {
     @RequestMapping(value = "/compteRendu/{id}",method = RequestMethod.GET)
     public Optional<Compte_rendu> getCompteRendu(@PathVariable Long id){return compteRenduRepository.findById(id);}
 
+    @RequestMapping(value = "/compteRendu",method = RequestMethod.POST)
+    private Compte_rendu save(@RequestBody Compte_rendu compteRendu){return compteRenduRepository.save(compteRendu);}
+
+
 }

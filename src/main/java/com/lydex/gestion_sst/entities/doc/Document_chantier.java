@@ -1,8 +1,8 @@
 package com.lydex.gestion_sst.entities.doc;
 
-import com.lydex.gestion_sst.entities.chantier.Visite_hs;
-
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.io.Serializable;
 @Entity
 public class Document_chantier implements Serializable {

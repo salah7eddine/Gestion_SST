@@ -1,38 +1,48 @@
 package com.lydex.gestion_sst.entities.user;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.lydex.gestion_sst.entities.chantier.Visite_hs;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
-import java.util.List;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
 
 @Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class User implements Serializable {
-    @Id
-    @GeneratedValue
+    @Id @GeneratedValue
     private Long id_user;
     private String pseudoName;
+    private String password;
     private String email ;
     private long num;
+    @Temporal(TemporalType.DATE)
+    private Date dateCreation;
+    @Lob
+    private byte[] photo;
     // -----------------------
     @OneToOne
     @JoinColumn(name = "id_fct",referencedColumnName = "id")
     private Fonction fct;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Collection<Role> roles = new ArrayList<>();
     // -----------------------
 
-    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
-    private List<Visite_hs> visiteHs;
 
     public User() {
     }
 
-    public User(String pseudoName, String email, long num, Fonction fct) {
-
+    public User(String pseudoName, String password, String email, long num, Date dateCreation, byte[] photo, Fonction fct) {
         this.pseudoName = pseudoName;
+        this.password = password;
         this.email = email;
         this.num = num;
+        this.dateCreation = dateCreation;
+        this.photo = photo;
         this.fct = fct;
     }
 
@@ -69,6 +79,22 @@ public class User implements Serializable {
         this.num = num;
     }
 
+    public Date getDateCreation() {
+        return dateCreation;
+    }
+
+    public void setDateCreation(Date dateCreation) {
+        this.dateCreation = dateCreation;
+    }
+
+    public byte[] getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(byte[] photo) {
+        this.photo = photo;
+    }
+
     public Fonction getFct() {
         return fct;
     }
@@ -77,13 +103,19 @@ public class User implements Serializable {
         this.fct = fct;
     }
 
-    @JsonIgnore
-    @XmlTransient
-    public List<Visite_hs> getVisiteHs() {
-        return visiteHs;
+    public String getPassword() {
+        return password;
     }
 
-    public void setVisiteHs(List<Visite_hs> visiteHs) {
-        this.visiteHs = visiteHs;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Collection<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Collection<Role> roles) {
+        this.roles = roles;
     }
 }

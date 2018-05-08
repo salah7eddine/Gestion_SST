@@ -20,4 +20,9 @@ public class DocumentChantierRestService {
     @RequestMapping(value = "/documentChantier/{id}",method = RequestMethod.GET)
     public Optional<Document_chantier> getdocumentChantier(@PathVariable Long id){return documentChantierRepository.findById(id);}
 
+    @RequestMapping(value = "/documentChantier",method = RequestMethod.POST)
+    private Document_chantier save(@RequestBody Document_chantier documentChantier){return documentChantierRepository.save(documentChantier);}
+
+
+
 }

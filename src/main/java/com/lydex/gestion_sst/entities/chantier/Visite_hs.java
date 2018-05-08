@@ -3,7 +3,9 @@ package com.lydex.gestion_sst.entities.chantier;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.lydex.gestion_sst.entities.doc.Compte_rendu;
 import com.lydex.gestion_sst.entities.doc.Document_chantier;
+import com.lydex.gestion_sst.entities.user.Agent;
 import com.lydex.gestion_sst.entities.user.User;
+import com.lydex.gestion_sst.entities.user.Visiteurs;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlTransient;
@@ -23,10 +25,6 @@ public class Visite_hs implements Serializable{
     //private Collection<String> visiteurs;
     //private Collection<String> Agents_Visités;
 
-
-    @ManyToOne
-    @JoinColumn(name = "Code_user")
-    private User user;
 
     @OneToMany(mappedBy ="visiteHs",fetch = FetchType.LAZY )
     private List<Observation> observations;
@@ -113,13 +111,7 @@ public class Visite_hs implements Serializable{
         this.ordre_viste = ordre_viste;
     }
 
-    public User getUser() {
-        return user;
-    }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
 
     @JsonIgnore
     @XmlTransient
