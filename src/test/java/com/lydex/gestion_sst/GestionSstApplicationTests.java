@@ -17,14 +17,13 @@ import java.util.Date;
 public class GestionSstApplicationTests {
     @Autowired
     AccountService accountService;
-    @Autowired
-    BCryptPasswordEncoder passwordEncoder;
     @Test
     public void contextLoads() {
         Fonction fonction = new Fonction();
         fonction.setId(1L);
-        User salah = new User("salah",passwordEncoder.encode("salah"),"",1L,new Date(),new byte[1],fonction);
+        User salah = new User("salah","salah","",1L,new Date(),new byte[1],fonction);
         accountService.addUser(salah);
+        accountService.addRoleToUser("salah","USER");
     }
 
 }
