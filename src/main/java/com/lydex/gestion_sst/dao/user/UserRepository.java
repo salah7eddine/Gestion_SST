@@ -10,5 +10,6 @@ import org.springframework.data.repository.query.Param;
 public interface UserRepository extends JpaRepository<User,Long> {
     @Query("select u from User u where u.pseudoName like:x and u.email like:x")
     public Page<User> chercher(@Param("x") String mc, Pageable pageable);
+
     User findByPseudoName(String pseudoName);
 }

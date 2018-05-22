@@ -28,4 +28,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         });
         return new User(appUser.getPseudoName(), appUser.getPassword(), authorities);
     }
+
+    //TODO
+      /* il faut ajouter
+      @Transactional
+    public void save(ObjetGlobal x){
+        da1.save(x.g1),
+
+    };*/
 }

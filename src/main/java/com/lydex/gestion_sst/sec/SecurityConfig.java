@@ -2,6 +2,7 @@ package com.lydex.gestion_sst.sec;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -30,7 +31,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.authorizeRequests().antMatchers("/login/**").permitAll();
+        http.authorizeRequests().antMatchers("/login/**","/userName/**","/visiteHs/**","/visiteHs","/myVisiteHs/**").permitAll();
+        /*
+        http.authorizeRequests().antMatchers(HttpMethod.GET, "/action/**","/visiteHs/**","/observations").permitAll();
+        http.authorizeRequests().antMatchers(HttpMethod.POST, "/action/**","/visiteHs/**","/observations").permitAll();
+        http.authorizeRequests().antMatchers(HttpMethod.PUT, "/action/**","").hasAuthority("APS");
+        http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/action/**","").hasAuthority("APS");
+        */
         http.authorizeRequests().anyRequest().authenticated();
         http.addFilter(new JWTAuthentificationFilter(authenticationManager()));
         http.addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);

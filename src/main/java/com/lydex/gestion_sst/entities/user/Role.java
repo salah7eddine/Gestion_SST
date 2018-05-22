@@ -18,4 +18,8 @@ public class Role implements Serializable {
     @GeneratedValue
     private Long id;
     private String name;
+
+    public Role(String aps) {
+        this.name=aps;
+    }
 }

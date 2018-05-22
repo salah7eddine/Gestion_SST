@@ -36,7 +36,11 @@ public class Visite_hs implements Serializable{
 
 
     @ManyToOne
-    @JoinColumn(name = "Code_chantier")
+    @JoinColumn(name = "code_user",referencedColumnName = "id_user")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "Code_chantier",referencedColumnName = "id_chantier" )
     private Chantier chantier;
 
 
@@ -111,7 +115,13 @@ public class Visite_hs implements Serializable{
         this.ordre_viste = ordre_viste;
     }
 
+    public User getUser() {
+        return user;
+    }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     @JsonIgnore
     @XmlTransient

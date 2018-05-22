@@ -14,7 +14,7 @@ public class VisiteurVisite {
     @JoinColumn(name = "Code_visiteur")
     private Visiteurs visiteurs;
     @ManyToOne
-    @JoinColumn(name = "Code_user")
+    @JoinColumn(name = "Code_visite")
     private Visite_hs visiteHs;
 
 

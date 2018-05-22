@@ -16,11 +16,15 @@ public class VisiteHsRestService {
     @Autowired
     private VisiteHsRepository visiteHsRepository;
 
-    @RequestMapping(value = "/VisiteHs",method = RequestMethod.GET)
+    @RequestMapping(value = "/visiteHs",method = RequestMethod.GET)
     public List<Visite_hs> getVisiteHss(){return visiteHsRepository.findAll();}
 
-    @RequestMapping(value = "/VisiteHs/{id}",method = RequestMethod.GET)
+    @RequestMapping(value = "/visiteHs/{id}",method = RequestMethod.GET)
     public Optional<Visite_hs> getVisiteHs(@PathVariable Long id){return visiteHsRepository.findById(id);}
+
+    @RequestMapping(value = "/myVisiteHs/{id}",method = RequestMethod.GET)
+    public List<Visite_hs> getMyVisiteHs(@PathVariable Long id)
+    { System.out.println(id);return visiteHsRepository.getMyVisiteHs(id);}
 
     @RequestMapping(value = "/chercherVisite",method = RequestMethod.GET)
     private Page<Visite_hs> chercher(@RequestParam(name = "mc",defaultValue ="") String mc,

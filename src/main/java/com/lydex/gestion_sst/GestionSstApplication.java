@@ -1,6 +1,7 @@
 package com.lydex.gestion_sst;
 
 import ch.qos.logback.core.net.SyslogOutputStream;
+import com.lydex.gestion_sst.dao.chantier.ActionRepository;
 import com.lydex.gestion_sst.dao.chantier.ChantierRepository;
 import com.lydex.gestion_sst.entities.chantier.Chantier;
 import org.hibernate.boot.jaxb.SourceType;
@@ -17,6 +18,9 @@ public class GestionSstApplication implements CommandLineRunner{
 	@Autowired
 	private ChantierRepository chantierRepository;
 
+	@Autowired
+	private ActionRepository actionRepository;
+
 	public static void main(String[] args) {
 		SpringApplication.run(GestionSstApplication.class, args);
 	}
@@ -32,6 +36,11 @@ public class GestionSstApplication implements CommandLineRunner{
 		chantierRepository.findAll().forEach(c->{
 			System.out.println(c.getLibelle_chantier());
 			System.out.println(c.getDesc_chantier());
+		});
+
+		actionRepository.findAll().forEach(a->{
+			System.out.println(a.getObject());
+			System.out.println(a.getStatut());
 		});*/
 	}
 }

@@ -13,7 +13,7 @@ public class AgentVisite {
     @JoinColumn(name = "Code_agent")
     private Agent agent;
     @ManyToOne
-    @JoinColumn(name = "Code_user")
+    @JoinColumn(name = "Code_visite")
     private Visite_hs visiteHs;
 
     public AgentVisite(Agent agent, Visite_hs visiteHs) {

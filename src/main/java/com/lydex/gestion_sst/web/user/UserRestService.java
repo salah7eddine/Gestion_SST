@@ -37,6 +37,11 @@ public class UserRestService
     @RequestMapping(value = "/user/{id}",method = RequestMethod.GET)
     public Optional<User> getUser(@PathVariable Long id){return userRepository.findById(id);}
 
+    @RequestMapping(value = "/userName/{name}",method = RequestMethod.GET)
+    public User getUserName(@PathVariable String name){
+        System.out.println(userRepository.findByPseudoName(name));
+        return userRepository.findByPseudoName(name);}
+
 
     @RequestMapping(value = "/chercherUser",method = RequestMethod.GET)
     private Page<User> chercher(@RequestParam(name = "mc",defaultValue ="") String mc,
@@ -62,20 +67,20 @@ public class UserRestService
     @RequestMapping(value = "/agent",method = RequestMethod.POST)
     public Agent saveAgent(@RequestBody Agent agent){return agentRepository.save(agent);}
 
-    @RequestMapping("/visiteursvisite")
-    public List<VisiteurVisite> SaveVisiteursVisite(@RequestBody List<Visiteurs> visiteurs,@RequestParam Long idVisite){
+    @RequestMapping("/visiteursvisite/{id_viste}")
+    public List<VisiteurVisite> SaveVisiteursVisite(@RequestBody List<Visiteurs> visiteurs,@PathVariable Long id_viste){
         List<VisiteurVisite> visiteurVisites=new ArrayList<>();
-        Visite_hs visiteHs=visiteHsRepository.getOne(idVisite);
+        Visite_hs visiteHs=visiteHsRepository.getOne(id_viste);
         for (Visiteurs visiteur:visiteurs){
             visiteurVisites.add(new VisiteurVisite(visiteur,visiteHs));
         }
         return visiteurVisiteRepository.saveAll(visiteurVisites);
     }
 
-    @RequestMapping("/agentsvisite")
-    public List<AgentVisite> SaveAgentsVisite(@RequestBody List<Agent> agents, @RequestParam Long idAgent){
+    @RequestMapping("/agentsvisite/{id_viste}")
+    public List<AgentVisite> SaveAgentsVisite(@RequestBody List<Agent> agents, @PathVariable Long id_viste){
         List<AgentVisite> agentVisites=new ArrayList<>();
-        Visite_hs visiteHs=visiteHsRepository.getOne(idAgent);
+        Visite_hs visiteHs=visiteHsRepository.getOne(id_viste);
         for (Agent agent:agents){
             agentVisites.add(new AgentVisite(agent,visiteHs));
         }
