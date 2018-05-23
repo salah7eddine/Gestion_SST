@@ -16,4 +16,8 @@ public interface VisiteHsRepository extends JpaRepository<Visite_hs,Long> {
 
     @Query("select v from Visite_hs v where v.user.id_user = :id")
     public List<Visite_hs> getMyVisiteHs(@Param("id") Long id);
+
+    @Query("select v from Visite_hs v where v.compteRendu.etatCompteRendu.id_etat <> 1")
+    public List<Visite_hs> getVisiteHsByEtat();
+
 }

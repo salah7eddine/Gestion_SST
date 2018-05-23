@@ -31,8 +31,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.authorizeRequests().antMatchers("/login/**","/userName/**","/visiteHs/**","/visiteHs","/myVisiteHs/**").permitAll();
-        http.authorizeRequests().antMatchers(HttpMethod.PUT, "/chantier/**").permitAll();
+        http.authorizeRequests().antMatchers("/login/**","/userName/**","/visiteHs/**","/visiteHs","/myVisiteHs/**","/visiteHsByEtat/**").permitAll();
+        http.authorizeRequests().antMatchers(HttpMethod.PUT, "/chantier/**","/compteRenduByEtat/**").permitAll();
         /*
         http.authorizeRequests().antMatchers(HttpMethod.GET, "/action/**","/visiteHs/**","/observations").permitAll();
         http.authorizeRequests().antMatchers(HttpMethod.POST, "/action/**","/visiteHs/**","/observations").permitAll();

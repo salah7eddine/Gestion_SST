@@ -19,6 +19,11 @@ public class VisiteHsRestService {
     @RequestMapping(value = "/visiteHs",method = RequestMethod.GET)
     public List<Visite_hs> getVisiteHss(){return visiteHsRepository.findAll();}
 
+    @RequestMapping(value = "/visiteHsByEtat",method = RequestMethod.GET)
+    public List<Visite_hs> getVisiteHssByEtat(){return visiteHsRepository.getVisiteHsByEtat();}
+
+
+
     @RequestMapping(value = "/visiteHs/{id}",method = RequestMethod.GET)
     public Optional<Visite_hs> getVisiteHs(@PathVariable Long id){return visiteHsRepository.findById(id);}
 
