@@ -11,8 +11,12 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.RegexRequestMatcher;
+import org.springframework.security.web.util.matcher.RequestMatcher;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.util.regex.Pattern;
 
 @Configuration
 @EnableWebSecurity
@@ -30,9 +34,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
+        //http.csrf().ignoringAntMatchers("/nocsrf","/ignore/startswith/**");
+        /*
+        *
+        * */
+
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.authorizeRequests().antMatchers("/login/**","/userName/**","/visiteHs/**","/visiteHs","/myVisiteHs/**","/visiteHsByEtat/**").permitAll();
-        http.authorizeRequests().antMatchers(HttpMethod.PUT, "/chantier/**","/compteRenduByEtat/**").permitAll();
+        http.authorizeRequests().antMatchers("/login/**","/chantier/**","/userName/**","/visiteHs/**",
+                "/myVisiteHs/**","/visiteHsByEtat/**","/compteRenduByEtat/**").permitAll();
+
+       // http.authorizeRequests().antMatchers(HttpMethod.PUT, "/chantier/**","/compteRenduByEtat/**").permitAll();
         /*
         http.authorizeRequests().antMatchers(HttpMethod.GET, "/action/**","/visiteHs/**","/observations").permitAll();
         http.authorizeRequests().antMatchers(HttpMethod.POST, "/action/**","/visiteHs/**","/observations").permitAll();

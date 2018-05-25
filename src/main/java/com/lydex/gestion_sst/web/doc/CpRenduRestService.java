@@ -32,12 +32,13 @@ public class CpRenduRestService {
     @RequestMapping(value = "/compteRendu",method = RequestMethod.POST)
     private Compte_rendu save(@RequestBody Compte_rendu compteRendu){return compteRenduRepository.save(compteRendu);}
 
-    @RequestMapping(value = "/compteRenduByEtat/{id}",method = RequestMethod.PUT)
+    @RequestMapping(value = "/compteRenduByEtat/{id}",method = RequestMethod.POST)
     private Compte_rendu update(@PathVariable Long id,@RequestBody Compte_rendu compteRendu){
         compteRendu.setId_compte_rendu(id);
+        compteRendu.setDateCreation(compteRendu.getDateCreation());
         Etat_compte_rendu etatCompteRendu= etatCpRenduRepository.getOne(compteRendu.getEtatCompteRendu().getId_etat()+1);
         compteRendu.setEtatCompteRendu(etatCompteRendu);
-    return compteRenduRepository.save(compteRendu);}
+            return compteRenduRepository.save(compteRendu);}
 
 
 
