@@ -18,10 +18,9 @@ public class Visite_hs implements Serializable{
     @Id @GeneratedValue
     private Long id_viste;
     private String description;
+    private String ordre_viste;
     @Temporal(TemporalType.DATE)
     private Date date_visite;
-    @Temporal(TemporalType.DATE)
-    private Date ordre_viste;
     //private Collection<String> visiteurs;
     //private Collection<String> Agents_Visités;
 
@@ -76,7 +75,7 @@ public class Visite_hs implements Serializable{
     public Visite_hs() {
     }
 
-    public Visite_hs(String description, Date date_visite, Date ordre_viste) {
+    public Visite_hs(String description, Date date_visite, String ordre_viste) {
         this.description = description;
         this.date_visite = date_visite;
         this.ordre_viste = ordre_viste;
@@ -107,11 +106,11 @@ public class Visite_hs implements Serializable{
         this.date_visite = date_visite;
     }
 
-    public Date getOrdre_viste() {
+    public String getOrdre_viste() {
         return ordre_viste;
     }
 
-    public void setOrdre_viste(Date ordre_viste) {
+    public void setOrdre_viste(String ordre_viste) {
         this.ordre_viste = ordre_viste;
     }
 
