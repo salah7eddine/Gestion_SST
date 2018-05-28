@@ -49,7 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers(HttpMethod.POST, "/action/**","/visiteHs/**","/observations").permitAll();
         http.authorizeRequests().antMatchers(HttpMethod.PUT, "/action/**","").hasAuthority("APS");
         http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/action/**","").hasAuthority("APS");
-        */   
+        */
         http.authorizeRequests().anyRequest().authenticated();
         http.addFilter(new JWTAuthentificationFilter(authenticationManager()));
         http.addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);

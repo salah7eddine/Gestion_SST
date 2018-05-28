@@ -30,7 +30,11 @@ public class CpRenduRestService {
     public Optional<Compte_rendu> getCompteRendu(@PathVariable Long id){return compteRenduRepository.findById(id);}
 
     @RequestMapping(value = "/compteRendu",method = RequestMethod.POST)
-    private Compte_rendu save(@RequestBody Compte_rendu compteRendu){return compteRenduRepository.save(compteRendu);}
+    private Compte_rendu save(@RequestBody Compte_rendu compteRendu){
+        System.out.println(compteRendu.getId_compte_rendu());
+        System.out.println(compteRendu.getDateCreation());
+        System.out.println(compteRendu.getEtatCompteRendu().getId_etat());
+        return compteRenduRepository.save(compteRendu);}
 
     @RequestMapping(value = "/compteRenduByEtat/{id}",method = RequestMethod.POST)
     private Compte_rendu update(@PathVariable Long id,@RequestBody Compte_rendu compteRendu){
