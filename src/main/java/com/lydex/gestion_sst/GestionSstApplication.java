@@ -27,9 +27,9 @@ public class GestionSstApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		DateFormat df=new SimpleDateFormat("dd/MM/yyyy");
+		/*DateFormat df=new SimpleDateFormat("dd/MM/yyyy");
 
-		/*chantierRepository.save(new Chantier("libelle test1","desc test1",df.parse("12/2/2018"),df.parse("12/6/2018")));
+		chantierRepository.save(new Chantier("libelle test1","desc test1",df.parse("12/2/2018"),df.parse("12/6/2018")));
 		chantierRepository.save(new Chantier("libelle test2","desc test2",df.parse("12/3/2018"),df.parse("12/7/2018")));
 		chantierRepository.save(new Chantier("libelle test3","desc test3",df.parse("12/4/2018"),df.parse("12/8/2018")));
 
